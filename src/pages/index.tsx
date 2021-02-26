@@ -7,10 +7,10 @@ interface IProduct {
 }
 
 interface HomeProps {
-  recommendedProducts: IProduct;
+  recommendedProducts: IProduct[];
 }
 
-export default function Home({ recommendedProducts }) {
+export default function Home({ recommendedProducts }: HomeProps) {
   return (
     <div>
       <Title>Hello World</Title>
