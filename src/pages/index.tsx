@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next";
-import { Title } from "../styles/Pages/home";
+import { Title } from "@/styles/Pages/home";
 
 interface IProduct {
   id: string;
@@ -12,7 +12,7 @@ interface HomeProps {
 
 export default function Home({ recommendedProducts }: HomeProps) {
   async function handleSum() {
-    const { sum } = (await import("../lib/math")).default;
+    const { sum } = (await import("@/lib/math")).default;
     alert(sum(3, 5));
   }
   return (
@@ -32,7 +32,9 @@ export default function Home({ recommendedProducts }: HomeProps) {
 }
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
-  const response = await fetch("http://localhost:3334/recommended");
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/recommended`
+  );
   const recommendedProducts = await response.json();
 
   return {
